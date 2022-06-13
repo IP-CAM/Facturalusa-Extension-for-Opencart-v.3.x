@@ -1,4 +1,5 @@
-# PHP - Facturalusa
+# OpenCart - Facturalusa
+
 Plugin de integração entre as lojas online OpenCart e o Software de Facturação Online www.facturalusa.pt. 
 
 ## Requisitos
