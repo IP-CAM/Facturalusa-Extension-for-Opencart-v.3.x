@@ -1,0 +1,16 @@
+Instruções de como instalar e integrar o Facturalusa com a sua Loja Online Opencart Versão 3x:
+
+1. Aceder ao backoffice do Opencart
+2. Aceder ao menu Extensions > Installer
+3. Efectuar o upload do ficheiro "facturalusa.ocmod.zip"
+4. Aceder ao menu Extensions > Modifications
+5. Pressionar os botões "Clear" e "Refresh" por esta ordem
+6. Aceder ao menu Extensions > Extensions > Modules
+7. Instalar o módulo "Facturalusa"
+8. Editar / configurar o módulo "Facturalusa"
+
+Após concluir a configuração, quando uma encomenda for sincronizada do Opencart para o Facturalusa, a indicação do documento criado, vai aparecer em dois sítios:
+	1. Na listagem das encomendas, no menu Sales > Orders
+	2. Na visualização de uma encomenda, no menu Sales > Orders > View
+	
+Se tiver alguma dúvida ou questão, envie-nos uma mensagem através do formulário de contacto, via Suporte Ticket (dentro da sua subscrição) ou via email para geral@facturalusa.pt
