@@ -23,6 +23,9 @@ Após concluir a configuração, quando uma encomenda for sincronizada do OpenCa
 1. Na listagem das encomendas, no menu Sales > Orders
 2. Na visualização de uma encomenda, no menu Sales > Orders > View
 
+## Ajuda
+Se tiver alguma dúvida ou questão, envie-nos uma mensagem através do formulário de contacto, via Suporte Ticket (dentro da sua subscrição) ou via email para geral@facturalusa.pt
+
 ## Licença
 
 MIT
