@@ -552,8 +552,6 @@ class FacturalusaDocument
             $twig = new \Twig\Environment($loader);
             $view = $twig->render('facturalusa_document.twig', $content);
 
-            file_put_contents(DIR_SYSTEM . 'storage/logs/x.txt', $view, FILE_APPEND);
-
             $mail = new Mail($this->config->get('config_mail_engine'));
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
