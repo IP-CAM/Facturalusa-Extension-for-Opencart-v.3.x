@@ -64,7 +64,7 @@ class FacturalusaHelper
         if (!$vatNumberField || empty($order))
             return self::CONSUMIDOR_FINAL;
 
-        if (!isset($order['custom_field']))
+        if (isset($order['custom_field']) && $order['custom_field'])
         {
             $customFields = is_array($order['custom_field']) ? $order['custom_field'] : unserialize($order['custom_field']);
 
