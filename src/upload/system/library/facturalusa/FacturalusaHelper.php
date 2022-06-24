@@ -73,6 +73,27 @@ class FacturalusaHelper
                     return $value;
         }
 
+        /**
+         * User can add the VAT field to three locations:
+         * 
+         * 1) Account
+         * 2) Payment address
+         * 3) Affiliate <- Doesn't matter
+         * 
+         * Usually people would add it to the Account information, but in some ocasions it was noticed that they added
+         * to the Payment address information. This would lead to the VAT Number never been found.
+         * 
+         * So, after checking for the VAT Number in the Account (custom_field) it also checks in the Payment Address (payment_custom_field).
+         */
+        if (isset($order['payment_custom_field']) && $order['payment_custom_field'])
+        {
+            $customFields = is_array($order['payment_custom_field']) ? $order['payment_custom_field'] : unserialize($order['payment_custom_field']);
+
+            foreach ($customFields as $field => $value)
+                if ($field == $vatNumberField)
+                    return $value;
+        }
+
         return self::CONSUMIDOR_FINAL;
     }
 
