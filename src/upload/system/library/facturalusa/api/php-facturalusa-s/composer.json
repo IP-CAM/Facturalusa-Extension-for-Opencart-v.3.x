@@ -1,0 +1,26 @@
+{
+  "name": "infolusa/php-facturalusa",
+  "description": "PHP Facturalusa é uma biblioteca para ajudar na interacção com o Software de Facturação Online www.facturalusa.pt",
+  "type": "library",  
+  "license": "MIT",
+  "keywords": ["api client", "facturalusa", "software de facturação", "facturalusa.pt"],
+  "require": 
+  {
+    "php": ">=5.3.0",
+    "ext-curl": "*"
+  },
+  "authors": 
+  [
+    {
+      "name": "Infolusa - Soluções Informáticas",
+      "email": "geral@infolusa.pt"
+    }
+  ],
+  "autoload": 
+  {
+    "psr-4":
+    {
+      "Facturalusa\\": "src/"
+    }
+  }
+}
