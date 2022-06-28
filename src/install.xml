@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <modification>
-    <code>facturalusa</code>
+    <code>Facturalusa</code>
     <name>Facturalusa - Software de Facturação Online</name>
-    <version>1.01</version>
+    <version>1.02</version>
     <author>Infolusa - Soluções Informáticas</author>
     <link>https://facturalusa.pt</link>
     <file path="admin/controller/sale/order.php">
