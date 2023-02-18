@@ -26,10 +26,12 @@ class Currency
      * https://facturalusa.pt/documentacao/api#administracao-moedas-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/currencies/create', 'POST', $params);
+        return $this->facturalusa->request('administration/currencies/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Currency
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/currencies/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/currencies/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Currency
      * https://facturalusa.pt/documentacao/api#administracao-moedas-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/currencies/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/currencies/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Currency
      * https://facturalusa.pt/documentacao/api#administracao-moedas-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/currencies/find', 'POST', $params);
+        return $this->facturalusa->request('administration/currencies/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Currency
      * https://facturalusa.pt/documentacao/api#administracao-moedas-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/currencies/list', 'POST', $params);
+        return $this->facturalusa->request('administration/currencies/list', 'POST', $params);
     }
 }

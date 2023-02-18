@@ -31,7 +31,7 @@ class Item
      */
     public function create($params)
     {
-        $this->facturalusa->request('items/create', 'POST', $params);
+        return $this->facturalusa->request('items/create', 'POST', $params);
     }
 
     /**
@@ -40,10 +40,12 @@ class Item
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("items/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("items/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -51,10 +53,12 @@ class Item
      * https://facturalusa.pt/documentacao/api#artigos-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("items/{$id}/delete", 'POST');
+        return $this->facturalusa->request("items/{$id}/delete", 'POST');
     }
 
     /**
@@ -62,10 +66,12 @@ class Item
      * https://facturalusa.pt/documentacao/api#artigos-eliminar-imagem
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function deleteImage($id)
     {
-        $this->facturalusa->request("items/{$id}/delete_image", 'POST');
+        return $this->facturalusa->request("items/{$id}/delete_image", 'POST');
     }
 
     /**
@@ -73,10 +79,12 @@ class Item
      * https://facturalusa.pt/documentacao/api#artigos-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('items/find', 'POST', $params);
+        return $this->facturalusa->request('items/find', 'POST', $params);
     }
 
     /**
@@ -84,9 +92,11 @@ class Item
      * https://facturalusa.pt/documentacao/api#artigos-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('items/list', 'POST', $params);
+        return $this->facturalusa->request('items/list', 'POST', $params);
     }
 }

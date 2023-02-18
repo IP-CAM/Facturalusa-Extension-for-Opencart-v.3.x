@@ -26,10 +26,12 @@ class ItemStock
      * https://facturalusa.pt/documentacao/api#artigos-stock-movimentos-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('items/stock/movements/create', 'POST', $params);
+        return $this->facturalusa->request('items/stock/movements/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class ItemStock
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("items/stock/movements/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("items/stock/movements/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class ItemStock
      * https://facturalusa.pt/documentacao/api#artigos-stock-movimentos-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("items/stock/movements/{$id}/delete", 'POST');
+        return $this->facturalusa->request("items/stock/movements/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,9 +66,11 @@ class ItemStock
      * https://facturalusa.pt/documentacao/api#artigos-stock-actual
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function current($id)
     {
-        $this->facturalusa->request("items/{$id}/stock/actual", 'POST');
+        return $this->facturalusa->request("items/{$id}/stock/actual", 'POST');
     }
 }

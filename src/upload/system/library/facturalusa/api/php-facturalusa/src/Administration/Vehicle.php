@@ -26,10 +26,12 @@ class Vehicle
      * https://facturalusa.pt/documentacao/api#administracao-veiculos-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/vehicles/create', 'POST', $params);
+        return $this->facturalusa->request('administration/vehicles/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Vehicle
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/vehicles/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/vehicles/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Vehicle
      * https://facturalusa.pt/documentacao/api#administracao-veiculos-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/vehicles/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/vehicles/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Vehicle
      * https://facturalusa.pt/documentacao/api#administracao-veiculos-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/vehicles/find', 'POST', $params);
+        return $this->facturalusa->request('administration/vehicles/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Vehicle
      * https://facturalusa.pt/documentacao/api#administracao-veiculos-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/vehicles/list', 'POST', $params);
+        return $this->facturalusa->request('administration/vehicles/list', 'POST', $params);
     }
 }

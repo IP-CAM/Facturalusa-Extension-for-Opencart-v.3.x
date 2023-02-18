@@ -26,10 +26,12 @@ class Warehouse
      * https://facturalusa.pt/documentacao/api#administracao-armazens-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/warehouses/create', 'POST', $params);
+        return $this->facturalusa->request('administration/warehouses/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Warehouse
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/warehouses/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/warehouses/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Warehouse
      * https://facturalusa.pt/documentacao/api#administracao-armazens-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/warehouses/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/warehouses/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Warehouse
      * https://facturalusa.pt/documentacao/api#administracao-armazens-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/warehouses/find', 'POST', $params);
+        return $this->facturalusa->request('administration/warehouses/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Warehouse
      * https://facturalusa.pt/documentacao/api#administracao-armazens-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/warehouses/list', 'POST', $params);
+        return $this->facturalusa->request('administration/warehouses/list', 'POST', $params);
     }
 }

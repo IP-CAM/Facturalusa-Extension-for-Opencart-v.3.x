@@ -26,10 +26,12 @@ class Employee
      * https://facturalusa.pt/documentacao/api#administracao-colaboradores-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/employees/create', 'POST', $params);
+        return $this->facturalusa->request('administration/employees/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Employee
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/employees/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/employees/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Employee
      * https://facturalusa.pt/documentacao/api#administracao-colaboradores-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/employees/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/employees/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Employee
      * https://facturalusa.pt/documentacao/api#administracao-colaboradores-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/employees/find', 'POST', $params);
+        return $this->facturalusa->request('administration/employees/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Employee
      * https://facturalusa.pt/documentacao/api#administracao-colaboradores-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/employees/list', 'POST', $params);
+        return $this->facturalusa->request('administration/employees/list', 'POST', $params);
     }
 }

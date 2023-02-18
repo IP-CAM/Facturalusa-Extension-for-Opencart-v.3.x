@@ -26,10 +26,12 @@ class PaymentCondition
      * https://facturalusa.pt/documentacao/api#administracao-condicoespagamento-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/paymentconditions/create', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentconditions/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class PaymentCondition
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/paymentconditions/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/paymentconditions/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class PaymentCondition
      * https://facturalusa.pt/documentacao/api#administracao-condicoespagamento-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/paymentconditions/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/paymentconditions/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class PaymentCondition
      * https://facturalusa.pt/documentacao/api#administracao-condicoespagamento-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/paymentconditions/find', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentconditions/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class PaymentCondition
      * https://facturalusa.pt/documentacao/api#administracao-condicoespagamento-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/paymentconditions/list', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentconditions/list', 'POST', $params);
     }
 }

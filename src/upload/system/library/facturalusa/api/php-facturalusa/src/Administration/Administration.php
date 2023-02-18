@@ -24,9 +24,11 @@ class Administration
     /**
      * Returns all the information about all the endpoints available in administration
      * https://facturalusa.pt/documentacao/api#administracao
+     * 
+     * @return  Array
      */
     public function all()
     {
-        $this->facturalusa->request('administration/all', 'POST');
+       return $this->facturalusa->request('administration/all', 'POST');
     }
 }

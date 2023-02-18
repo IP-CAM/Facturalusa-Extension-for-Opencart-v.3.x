@@ -81,6 +81,8 @@ class FacturalusaClient Implements FacturalusaResponse
 
         $this->httpcode = $httpcode;
         $this->response = json_decode($response);
+
+        return $this->response;
     }
 
     /**

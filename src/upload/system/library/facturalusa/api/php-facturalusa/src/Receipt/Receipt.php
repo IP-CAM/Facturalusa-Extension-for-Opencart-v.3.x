@@ -31,7 +31,7 @@ class Receipt
      */
     public function create($params)
     {
-        $this->facturalusa->request('receipts/create', 'POST', $params);
+        return $this->facturalusa->request('receipts/create', 'POST', $params);
     }
 
     /**
@@ -40,10 +40,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -51,10 +53,12 @@ class Receipt
      * https://facturalusa.pt/documentacao/api#recibos-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("receipts/{$id}/delete", 'POST');
+        return $this->facturalusa->request("receipts/{$id}/delete", 'POST');
     }
 
     /**
@@ -63,10 +67,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function cancel($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/cancel", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/cancel", 'POST', $params);
     }
 
     /**
@@ -75,10 +81,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function download($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/download", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/download", 'POST', $params);
     }
 
     /**
@@ -87,10 +95,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function sendEmail($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/send_email", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/send_email", 'POST', $params);
     }
 
     /**
@@ -99,10 +109,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function sendSms($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/send_sms", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/send_sms", 'POST', $params);
     }
 
     /**
@@ -111,10 +123,12 @@ class Receipt
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function sign($id, $params)
     {
-        $this->facturalusa->request("receipts/{$id}/sign", 'POST', $params);
+        return $this->facturalusa->request("receipts/{$id}/sign", 'POST', $params);
     }
 
     /**
@@ -122,10 +136,12 @@ class Receipt
      * https://facturalusa.pt/documentacao/api#recibos-sumario
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function summary($params)
     {
-        $this->facturalusa->request('receipts/summary', 'POST', $params);
+        return $this->facturalusa->request('receipts/summary', 'POST', $params);
     }
 
     /**
@@ -133,10 +149,12 @@ class Receipt
      * https://facturalusa.pt/documentacao/api#recibos-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('receipts/find', 'POST', $params);
+        return $this->facturalusa->request('receipts/find', 'POST', $params);
     }
 
     /**
@@ -144,9 +162,11 @@ class Receipt
      * https://facturalusa.pt/documentacao/api#recibos-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('receipts/list', 'POST', $params);
+        return $this->facturalusa->request('receipts/list', 'POST', $params);
     }
 }

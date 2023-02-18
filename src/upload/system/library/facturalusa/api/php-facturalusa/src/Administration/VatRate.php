@@ -26,10 +26,12 @@ class VatRate
      * https://facturalusa.pt/documentacao/api#administracao-taxasiva-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/vatrates/create', 'POST', $params);
+        return $this->facturalusa->request('administration/vatrates/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class VatRate
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/vatrates/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/vatrates/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class VatRate
      * https://facturalusa.pt/documentacao/api#administracao-taxasiva-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/vatrates/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/vatrates/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class VatRate
      * https://facturalusa.pt/documentacao/api#administracao-taxasiva-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/vatrates/find', 'POST', $params);
+        return $this->facturalusa->request('administration/vatrates/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class VatRate
      * https://facturalusa.pt/documentacao/api#administracao-taxasiva-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/vatrates/list', 'POST', $params);
+        return $this->facturalusa->request('administration/vatrates/list', 'POST', $params);
     }
 }

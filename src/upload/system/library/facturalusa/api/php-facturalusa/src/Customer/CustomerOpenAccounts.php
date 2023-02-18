@@ -26,10 +26,12 @@ class CustomerOpenAccounts
      * https://facturalusa.pt/documentacao/api#clientes-contas-aberto-singular
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function find($id)
     {
-        $this->facturalusa->request("customers/{$id}/accounts_open", 'POST');
+        return $this->facturalusa->request("customers/{$id}/accounts_open", 'POST');
     }
 
     /**
@@ -38,10 +40,12 @@ class CustomerOpenAccounts
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function download($id, $params = [])
     {
-        $this->facturalusa->request("customers/{$id}/accounts_open/download", 'POST', $params);
+        return $this->facturalusa->request("customers/{$id}/accounts_open/download", 'POST', $params);
     }
 
     /**
@@ -50,10 +54,12 @@ class CustomerOpenAccounts
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function sendEmail($id, $params = [])
     {
-        $this->facturalusa->request("customers/{$id}/accounts_open/send_email", 'POST', $params);
+        return $this->facturalusa->request("customers/{$id}/accounts_open/send_email", 'POST', $params);
     }
 
     /**
@@ -61,9 +67,11 @@ class CustomerOpenAccounts
      * https://facturalusa.pt/documentacao/api#clientes-contas-aberto-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request("customers/accounts_open", 'POST', $params);
+        return $this->facturalusa->request("customers/accounts_open", 'POST', $params);
     }
 }

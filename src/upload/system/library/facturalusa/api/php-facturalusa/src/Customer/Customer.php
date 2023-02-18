@@ -26,10 +26,12 @@ class Customer
      * https://facturalusa.pt/documentacao/api#clientes
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('customers/create', 'POST', $params);
+        return $this->facturalusa->request('customers/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Customer
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("customers/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("customers/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Customer
      * https://facturalusa.pt/documentacao/api#clientes-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("customers/{$id}/delete", 'POST');
+        return $this->facturalusa->request("customers/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Customer
      * https://facturalusa.pt/documentacao/api#clientes-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('customers/find', 'POST', $params);
+        return $this->facturalusa->request('customers/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Customer
      * https://facturalusa.pt/documentacao/api#clientes-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('customers/list', 'POST', $params);
+        return $this->facturalusa->request('customers/list', 'POST', $params);
     }
 }

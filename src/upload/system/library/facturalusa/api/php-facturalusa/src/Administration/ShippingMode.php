@@ -26,10 +26,12 @@ class ShippingMode
      * https://facturalusa.pt/documentacao/api#administracao-modosexpedicao-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/shippingmodes/create', 'POST', $params);
+        return $this->facturalusa->request('administration/shippingmodes/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class ShippingMode
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/shippingmodes/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/shippingmodes/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class ShippingMode
      * https://facturalusa.pt/documentacao/api#administracao-modosexpedicao-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/shippingmodes/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/shippingmodes/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class ShippingMode
      * https://facturalusa.pt/documentacao/api#administracao-modosexpedicao-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/shippingmodes/find', 'POST', $params);
+        return $this->facturalusa->request('administration/shippingmodes/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class ShippingMode
      * https://facturalusa.pt/documentacao/api#administracao-modosexpedicao-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/shippingmodes/list', 'POST', $params);
+        return $this->facturalusa->request('administration/shippingmodes/list', 'POST', $params);
     }
 }

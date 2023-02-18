@@ -26,10 +26,12 @@ class Category
      * https://facturalusa.pt/documentacao/api#administracao-categorias-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/categories/create', 'POST', $params);
+        return $this->facturalusa->request('administration/categories/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Category
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/categories/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/categories/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Category
      * https://facturalusa.pt/documentacao/api#administracao-categorias-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/categories/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/categories/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Category
      * https://facturalusa.pt/documentacao/api#administracao-categorias-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/categories/find', 'POST', $params);
+        return $this->facturalusa->request('administration/categories/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Category
      * https://facturalusa.pt/documentacao/api#administracao-categorias-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/categories/list', 'POST', $params);
+        return $this->facturalusa->request('administration/categories/list', 'POST', $params);
     }
 }

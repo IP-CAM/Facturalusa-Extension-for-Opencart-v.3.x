@@ -26,10 +26,12 @@ class Unit
      * https://facturalusa.pt/documentacao/api#administracao-unidades-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/units/create', 'POST', $params);
+        return $this->facturalusa->request('administration/units/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Unit
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/units/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/units/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Unit
      * https://facturalusa.pt/documentacao/api#administracao-unidades-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/units/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/units/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Unit
      * https://facturalusa.pt/documentacao/api#administracao-unidades-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/units/find', 'POST', $params);
+        return $this->facturalusa->request('administration/units/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Unit
      * https://facturalusa.pt/documentacao/api#administracao-unidades-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/units/list', 'POST', $params);
+        return $this->facturalusa->request('administration/units/list', 'POST', $params);
     }
 }

@@ -26,10 +26,12 @@ class Serie
      * https://facturalusa.pt/documentacao/api#administracao-series-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/series/create', 'POST', $params);
+        return $this->facturalusa->request('administration/series/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Serie
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/series/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/series/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,26 @@ class Serie
      * https://facturalusa.pt/documentacao/api#administracao-series-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/series/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/series/{$id}/delete", 'POST');
+    }
+
+    /**
+     * Communicates a serie to all type of documents in Autoridade Tributária Services
+     * https://facturalusa.pt/documentacao/api#administracao-series-comunicar
+     * 
+     * @param   Integer id
+     * @param   Array   params
+     * 
+     * @return  Array
+     */
+    public function communicate($id)
+    {
+        return $this->facturalusa->request("administration/series/{$id}/communicate", 'POST');
     }
 
     /**
@@ -60,10 +80,12 @@ class Serie
      * https://facturalusa.pt/documentacao/api#administracao-series-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/series/find', 'POST', $params);
+        return $this->facturalusa->request('administration/series/find', 'POST', $params);
     }
 
     /**
@@ -71,10 +93,12 @@ class Serie
      * https://facturalusa.pt/documentacao/api#administracao-series-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/series/list', 'POST', $params);
+        return $this->facturalusa->request('administration/series/list', 'POST', $params);
     }
 
     /**
@@ -82,9 +106,11 @@ class Serie
      * https://facturalusa.pt/documentacao/api#administracao-series-por-tipo-documento
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function byDocumentType($params = [])
     {
-        $this->facturalusa->request('administration/series/by_document_type', 'POST', $params);
+        return $this->facturalusa->request('administration/series/by_document_type', 'POST', $params);
     }
 }

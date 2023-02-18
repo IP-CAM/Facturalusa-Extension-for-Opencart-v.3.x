@@ -26,10 +26,12 @@ class PaymentMethod
      * https://facturalusa.pt/documentacao/api#administracao-formaspagamento-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/paymentmethods/create', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentmethods/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class PaymentMethod
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/paymentmethods/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/paymentmethods/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -52,7 +56,7 @@ class PaymentMethod
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/paymentmethods/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/paymentmethods/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +64,12 @@ class PaymentMethod
      * https://facturalusa.pt/documentacao/api#administracao-formaspagamento-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/paymentmethods/find', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentmethods/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +77,11 @@ class PaymentMethod
      * https://facturalusa.pt/documentacao/api#administracao-formaspagamento-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/paymentmethods/list', 'POST', $params);
+        return $this->facturalusa->request('administration/paymentmethods/list', 'POST', $params);
     }
 }

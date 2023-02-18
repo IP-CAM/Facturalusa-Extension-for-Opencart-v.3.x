@@ -26,10 +26,12 @@ class Price
      * https://facturalusa.pt/documentacao/api#administracao-precos-criar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function create($params)
     {
-        $this->facturalusa->request('administration/prices/create', 'POST', $params);
+        return $this->facturalusa->request('administration/prices/create', 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class Price
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/prices/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/prices/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -49,10 +53,12 @@ class Price
      * https://facturalusa.pt/documentacao/api#administracao-precos-eliminar
      * 
      * @param   Integer id
+     * 
+     * @return  Array
      */
     public function delete($id)
     {
-        $this->facturalusa->request("administration/prices/{$id}/delete", 'POST');
+        return $this->facturalusa->request("administration/prices/{$id}/delete", 'POST');
     }
 
     /**
@@ -60,10 +66,12 @@ class Price
      * https://facturalusa.pt/documentacao/api#administracao-precos-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/prices/find', 'POST', $params);
+        return $this->facturalusa->request('administration/prices/find', 'POST', $params);
     }
 
     /**
@@ -71,9 +79,11 @@ class Price
      * https://facturalusa.pt/documentacao/api#administracao-precos-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/prices/list', 'POST', $params);
+        return $this->facturalusa->request('administration/prices/list', 'POST', $params);
     }
 }

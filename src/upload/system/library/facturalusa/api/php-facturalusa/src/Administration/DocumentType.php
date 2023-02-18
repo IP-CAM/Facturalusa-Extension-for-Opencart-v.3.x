@@ -27,10 +27,12 @@ class DocumentType
      * 
      * @param   Integer id
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function update($id, $params)
     {
-        $this->facturalusa->request("administration/documentstypes/{$id}/update", 'POST', $params);
+        return $this->facturalusa->request("administration/documentstypes/{$id}/update", 'POST', $params);
     }
 
     /**
@@ -38,10 +40,12 @@ class DocumentType
      * https://facturalusa.pt/documentacao/api#administracao-tiposdocumento-procurar
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function find($params)
     {
-        $this->facturalusa->request('administration/documentstypes/find', 'POST', $params);
+        return $this->facturalusa->request('administration/documentstypes/find', 'POST', $params);
     }
 
     /**
@@ -49,9 +53,26 @@ class DocumentType
      * https://facturalusa.pt/documentacao/api#administracao-tiposdocumento-lista
      * 
      * @param   Array   params
+     * 
+     * @return  Array
      */
     public function list($params = [])
     {
-        $this->facturalusa->request('administration/documentstypes/list', 'POST', $params);
+        return $this->facturalusa->request('administration/documentstypes/list', 'POST', $params);
+    }
+
+    /**
+     * Communicates a serie by document type to Autoridade Tributária Services
+     * https://facturalusa.pt/documentacao/api#administracao-tiposdocumento-comunicar-serie
+     * 
+     * @param   Integer id
+     * @param   Integer serieId
+     * @param   Array   params
+     * 
+     * @return  Array
+     */
+    public function communicateSerie($id, $serieId, $params)
+    {
+        return $this->facturalusa->request("administration/documentstypes/{$id}/{$serieId}/communicate", 'POST', $params);
     }
 }
