@@ -1,6 +1,6 @@
 <?php 
 
-$_['heading_title'] = 'Facturalusa';
+$_['heading_title'] = 'Facturalusa - Software de Facturação Online';
 $_['text_extension'] = 'Extensions';
 
 // Error

@@ -1,30 +1,16 @@
 <?php 
 
 /**
- * Facturalusa Documents Database Table Class
+ * Facturalusa Opencart Sales Database Table Class
  */
-class FacturalusaDocumentsDB
-{   
+class FacturalusaOpencartSalesDB
+{  
     /**
-     * Holds the Opencart Registry class
+     * Holds the model facturalusa sales
      * 
-     * @param   Object
+     * @param   ModelFacturalusaSales
      */
-    private $registry;
-
-    /**
-     * Holds the directory path
-     * 
-     * @param   String
-     */
-    private $path;
-
-    /**
-     * Holds the model facturalusa documents
-     * 
-     * @param   ModelFacturalusaDocuments
-     */
-    private $modelFacturalusaDocuments;
+    private $modelFacturalusaSales;
 
     /**
      * Constructor
@@ -33,13 +19,11 @@ class FacturalusaDocumentsDB
      */
     public function __construct($registry = [])
     {
-        $this->registry = $registry;        
-        $this->path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
-        
-        require_once($this->path . 'model/extension/module/facturalusa_documents.php');
+        $path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
 
-        // Initializes the models old way
-        $this->modelFacturalusaDocuments = new ModelExtensionModuleFacturalusaDocuments($this->registry);
+        require_once($path . 'model/extension/module/facturalusa_sales.php');
+
+        $this->modelFacturalusaSales = new ModelExtensionModuleFacturalusaSales($registry);
     }
 
     /**
@@ -73,7 +57,7 @@ class FacturalusaDocumentsDB
      */
     public function insert($data)
     {
-        $this->modelFacturalusaDocuments->insert($data);
+        $this->modelFacturalusaSales->insert($data);
     }
 
     /**
@@ -83,17 +67,27 @@ class FacturalusaDocumentsDB
      */
     public function update($data)
     {
-        $this->modelFacturalusaDocuments->update($data);
+        $this->modelFacturalusaSales->update($data);
+    }
+
+    /**
+     * Deletes an existing row in DB
+     * 
+     * @param   Integer
+     */
+    public function delete($orderId)
+    {
+        $this->modelFacturalusaSales->delete($orderId);
     }
 
     /**
      * Returns an existing row in DB
      * 
-     * @param   Array
+     * @param   Integer
      */
     public function get($orderId)
     {
-        return $this->modelFacturalusaDocuments->get($orderId);
+        return $this->modelFacturalusaSales->get($orderId);
     }
 
     /**
@@ -105,7 +99,7 @@ class FacturalusaDocumentsDB
      */
     public function exists($orderId)
     {
-        return $this->modelFacturalusaDocuments->exists($orderId);
+        return $this->modelFacturalusaSales->exists($orderId);
     }
 
     /**
@@ -121,7 +115,7 @@ class FacturalusaDocumentsDB
      */
     public function addHistory($orderId, $orderStatusId, $comment = '')
     {
-        return $this->modelFacturalusaDocuments->addHistory($orderId, $orderStatusId, $comment);
+        return $this->modelFacturalusaSales->addHistory($orderId, $orderStatusId, $comment);
     }
 
     /**

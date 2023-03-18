@@ -2,7 +2,7 @@
 <modification>
     <code>Facturalusa</code>
     <name>Facturalusa - Software de Facturação Online</name>
-    <version>1.02</version>
+    <version>2.00</version>
     <author>Infolusa - Soluções Informáticas</author>
     <link>https://facturalusa.pt</link>
     <file path="admin/controller/sale/order.php">
@@ -11,7 +11,7 @@
             $results = $this->model_sale_order->getOrders($filter_data);
             ]]></search>
             <add position="after"><![CDATA[
-            $this->load->model('extension/module/facturalusa_documents');
+            $this->load->model('extension/module/facturalusa_sales');
             ]]></add>
         </operation>
     </file>
@@ -21,7 +21,7 @@
             foreach ($results as $result) {
             ]]></search>
             <add position="after"><![CDATA[
-			$facturalusaDocument = $this->model_extension_module_facturalusa_documents->get($result['order_id']);
+			$facturalusaSale = $this->model_extension_module_facturalusa_sales->get($result['order_id']);
             ]]></add>
         </operation>
     </file>
@@ -31,7 +31,7 @@
             'shipping_code' => $result['shipping_code'],
             ]]></search>
             <add position="after"><![CDATA[
-			'facturalusa' => $facturalusaDocument,
+			'facturalusa' => $facturalusaSale,
             ]]></add>
         </operation>
     </file>
@@ -64,7 +64,7 @@
 										<td class="text-left">{{ order.facturalusa['serie'] }}</td>
 									</tr>
 									<tr>
-										<td class="text-left">Número:</td>
+										<td class="text-left">Nr:</td>
 										<td class="text-left">{{ order.facturalusa['number'] }}</td>
 									</tr>
 									<tr>
@@ -88,9 +88,9 @@
             $data['catalog'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG : HTTP_CATALOG;
             ]]></search>
             <add position="after"><![CDATA[
-			$this->load->model('extension/module/facturalusa_documents');
-			$facturalusaDocument = $this->model_extension_module_facturalusa_documents->get($order_info['order_id']);
-			$data['facturalusa'] = $facturalusaDocument;
+			$this->load->model('extension/module/facturalusa_sales');
+			$facturalusaSale = $this->model_extension_module_facturalusa_sales->get($order_info['order_id']);
+			$data['facturalusa'] = $facturalusaSale;
 			$data['facturalusa_create_status'] = $this->config->get('module_facturalusa_document_create_order_status');
 			$data['facturalusa_cancel_status'] = $this->config->get('module_facturalusa_document_cancel_order_status');
             ]]></add>
@@ -103,122 +103,135 @@
             ]]></search>
             <add position="before"><![CDATA[
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-info-circle"></i> Facturalusa - Sincronização</h3>
 						</div>
 						<input type="hidden" id="facturalusa_create_status" value="{{ facturalusa_create_status|json_encode|escape }}">
 						<input type="hidden" id="facturalusa_cancel_status" value="{{ facturalusa_cancel_status|json_encode|escape }}">
-						<table class="table" style="margin-bottom: 0px;">
-							<tbody>
-								<tr>
-									<td>Estado</td>
-									<td class="text-right">
-										{% if facturalusa %}
-											{% if facturalusa.is_canceled %}
-												<span class="label label-danger" style="font-weight: normal; font-size: 12px">Cancelado</span>
-											{% else %}
-												{% if facturalusa.status == 'Terminado' %}
-													<span class="label label-success" style="font-weight: normal; font-size: 12px">Terminado</span>
+						<div class="table-responsive">
+							<table class="table" style="margin-bottom: 0px;">
+								<tbody>
+									<tr>
+										<td colspan="2">Estado</td>
+										<td class="text-right">
+											{% if facturalusa %}
+												{% if facturalusa.is_canceled %}
+													<span class="label label-danger" style="font-weight: normal; font-size: 12px">Anulado</span>
 												{% else %}
-													<span class="label label-warning" style="font-weight: normal; font-size: 12px">Rascunho</span>
+													{% if facturalusa.status == 'Terminado' %}
+														<span class="label label-success" style="font-weight: normal; font-size: 12px">Terminado</span>
+													{% else %}
+														<span class="label label-warning" style="font-weight: normal; font-size: 12px">Rascunho</span>
+													{% endif %}
 												{% endif %}
+											{% else %}
+												N/A
 											{% endif %}
-										{% else %}
-											N/A
-										{% endif %}
-									</td>
-								</tr>
-								{% if facturalusa and facturalusa.error %}
-									<tr>
-										<td class="text-center text-danger" style="font-weight: bold" colspan="2">{{ facturalusa.error }}</td>
-									</tr>
-								{% endif %}
-								{% if not facturalusa or facturalusa.status == 'Rascunho' %}
-									<tr>
-										<td colspan="2">
-											<button type="button" id="btn-facturalusa-create" class="btn btn-success btn-block">Sincronizar documento</button>
 										</td>
 									</tr>
-								{% elseif facturalusa and facturalusa.status == 'Terminado' and not facturalusa.is_canceled %}
-									<tr>
-										<td>
-											<button type="button" id="btn-facturalusa-cancel" class="btn btn-danger btn-block">Anular documento</button>
-										</td>
-										<td>
-											<button type="button" id="btn-facturalusa-download" class="btn btn-success btn-block">Download documento</button>
-										</td>
-									</tr>
-								{% elseif facturalusa and facturalusa.status == 'Terminado' and facturalusa.is_canceled %}
-									<tr>
-										<td colspan="2">
-											<button type="button" id="btn-facturalusa-download" class="btn btn-success btn-block">Download documento</button>
-										</td>
-									</tr>
-								{% endif %}
-							</tbody>
-						</table>
+									{% if facturalusa and facturalusa.error %}
+										<tr>
+											<td class="text-danger" style="font-weight: bold" colspan="2">{{ facturalusa.error }}</td>
+										</tr>
+									{% endif %}
+									{% if not facturalusa or facturalusa.status == 'Rascunho' %}
+										<tr>
+											<td colspan="3">
+												<button type="button" id="btn-facturalusa-create" class="btn btn-success btn-block">Sincronizar documento</button>
+											</td>
+										</tr>
+									{% elseif facturalusa and facturalusa.status == 'Terminado' and not facturalusa.is_canceled %}
+										<tr>
+											<td>
+												<button type="button" id="btn-facturalusa-cancel" class="btn btn-danger btn-block">Anular documento</button>
+											</td>
+											<td>
+												<button type="button" id="btn-facturalusa-download" class="btn btn-success btn-block">Download documento</button>
+											</td>
+											<td>
+												<button type="button" id="btn-facturalusa-send-email" class="btn btn-info btn-block">Enviar por email</button>
+											</td>
+										</tr>
+									{% elseif facturalusa and facturalusa.status == 'Terminado' and facturalusa.is_canceled %}
+										<tr>
+											<td colspan="2">
+												<button type="button" id="btn-facturalusa-download" class="btn btn-success btn-block">Download documento</button>
+											</td>
+											<td>
+												<button type="button" id="btn-facturalusa-send-by-email" class="btn btn-info btn-block">Enviar por email</button>
+											</td>
+											<td></td>
+										</tr>
+									{% endif %}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-				<div class="col-sm-8">
+				<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-info-circle"></i> Facturalusa - Documento</h3>
 						</div>
 						<div class="row">
-							<div class="col-sm-6">
-								<table class="table" style="margin-bottom: 0px;">
-									<tbody>
-										<tr>
-											<td>Data emissão</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.issue_date : 'N/A' }}</td>
-										</tr>
-										<tr>
-											<td>Documento</td>
-											<td class="text-right">
-												{% if facturalusa and facturalusa.status == 'Terminado' %} 
-													{{ facturalusa.document_description ~ ' ' ~ facturalusa.serie ~ '/' ~ facturalusa.number }}
-												{% else %}
-													N/A
-												{% endif %} 
-											</td>
-										</tr>
-										<tr>
-											<td>Cliente</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.customer_name : 'N/A' }}</td>
-										</tr>
-										<tr>
-											<td>Contribuinte</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.customer_vat_number : 'N/A' }}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="col-sm-6">
-								<table class="table" style="margin-bottom: 0px;">
-									<tbody>
-										<tr>
-											<td>Total s/IVA</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.net_total|number_format(2, ',', '') : 'N/A' }}</td>
-										</tr>
-										<tr>
-											<td>Total de IVA</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.total_vat|number_format(2, ',', '') : 'N/A' }}</td>
-										</tr>
-										<tr>
-											<td>Total geral</td>
-											<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.grand_total|number_format(2, ',', '') : 'N/A' }}</td>
-										</tr>
-										{% if facturalusa and facturalusa.status == 'Terminado' %}
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive">
+									<table class="table" style="margin-bottom: 0px;">
+										<tbody>
 											<tr>
-												<td colspan="2" class="text-center">
-													<a href="https://facturalusa.pt/app/vendas/find/{{ facturalusa.facturalusa_id }}" target="_blank">Abrir documento no Facturalusa</a>
+												<td>Data emissão</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.issue_date : 'N/A' }}</td>
+											</tr>
+											<tr>
+												<td>Documento</td>
+												<td class="text-right">
+													{% if facturalusa and facturalusa.status == 'Terminado' %} 
+														{{ facturalusa.document_description ~ ' ' ~ facturalusa.serie ~ '/' ~ facturalusa.number }}
+													{% else %}
+														N/A
+													{% endif %} 
 												</td>
 											</tr>
-										{% endif %}
-									</tbody>
-								</table>
+											<tr>
+												<td>Cliente</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.customer_name : 'N/A' }}</td>
+											</tr>
+											<tr>
+												<td>Contribuinte</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.customer_vat_number : 'N/A' }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive">
+									<table class="table" style="margin-bottom: 0px;">
+										<tbody>
+											<tr>
+												<td>Total s/IVA</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.net_total|number_format(2, ',', '') : 'N/A' }}</td>
+											</tr>
+											<tr>
+												<td>Total de IVA</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.total_vat|number_format(2, ',', '') : 'N/A' }}</td>
+											</tr>
+											<tr>
+												<td>Total geral</td>
+												<td class="text-right">{{ facturalusa and facturalusa.status == 'Terminado' ? facturalusa.grand_total|number_format(2, ',', '') : 'N/A' }}</td>
+											</tr>
+											{% if facturalusa %}
+												<tr>
+													<td colspan="2" class="text-center">
+														<a href="https://facturalusa.pt/app/vendas/find/{{ facturalusa.facturalusa_id }}" target="_blank">Abrir documento no Facturalusa</a>
+													</td>
+												</tr>
+											{% endif %}
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -312,6 +325,29 @@
 						stopLoading();
 
 						alert('Não foi possível anular, actualize esta página para ver o erro');
+					});
+				}
+			});
+
+			$(document).delegate('#btn-facturalusa-send-email', 'click', function()
+			{
+				if (window.confirm('Tem a certeza que deseja continuar?')) 
+				{
+					startLoading();
+
+					$.post('index.php?route=extension/module/facturalusa/sendEmail&user_token={{ user_token }}&order_id={{ order_id }}', function(response)
+					{
+						stopLoading();
+
+						if (response.status == false)
+							alert(response.message);
+						else
+							location.reload();
+					}).fail(function(response)
+					{
+						stopLoading();
+
+						alert('Não foi possível enviar o email, actualize esta página para ver o erro');
 					});
 				}
 			});

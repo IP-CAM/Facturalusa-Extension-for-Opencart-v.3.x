@@ -30,7 +30,7 @@ class ModelExtensionModuleFacturalusa extends Model
 		");
         
         $this->db->query("
-			CREATE TABLE IF NOT EXISTS {$dbPrefix}facturalusa_documents (
+			CREATE TABLE IF NOT EXISTS {$dbPrefix}facturalusa_sales (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
                     `order_id` int(11) NOT NULL,
                     `facturalusa_id` int(11) NULL,
@@ -63,6 +63,6 @@ class ModelExtensionModuleFacturalusa extends Model
 
         $this->db->query("DROP TABLE IF EXISTS {$dbPrefix}facturalusa_items");
         $this->db->query("DROP TABLE IF EXISTS {$dbPrefix}facturalusa_customers");
-        $this->db->query("DROP TABLE IF EXISTS {$dbPrefix}facturalusa_documents");
+        $this->db->query("DROP TABLE IF EXISTS {$dbPrefix}facturalusa_sales");
     }
 }

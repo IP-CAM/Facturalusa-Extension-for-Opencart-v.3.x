@@ -1,24 +1,10 @@
 <?php 
 
 /**
- * Facturalusa Items Database Table Class
+ * Facturalusa Opencart Items Database Table Class
  */
-class FacturalusaItemsDB
+class FacturalusaOpencartItemsDB
 {   
-    /**
-     * Holds the Opencart Registry class
-     * 
-     * @param   Object
-     */
-    private $registry;
-
-    /**
-     * Holds the directory path
-     * 
-     * @param   String
-     */
-    private $path;
-
     /**
      * Holds the model facturalusa items
      * 
@@ -33,13 +19,11 @@ class FacturalusaItemsDB
      */
     public function __construct($registry = [])
     {
-        $this->registry = $registry;        
-        $this->path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
-        
-        require_once($this->path . 'model/extension/module/facturalusa_items.php');
+        $path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
 
-        // Initializes the models old way
-        $this->modelFacturalusaItems = new ModelExtensionModuleFacturalusaItems($this->registry);
+        require_once($path . 'model/extension/module/facturalusa_items.php');
+        
+        $this->modelFacturalusaItems = new ModelExtensionModuleFacturalusaItems($registry);
     }
 
     /**

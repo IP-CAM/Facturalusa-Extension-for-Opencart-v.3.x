@@ -71,7 +71,7 @@ class ModelExtensionModuleFacturalusaItems extends Model
             $taxRate = $this->db->query("SELECT * FROM {$prefix}tax_rate WHERE tax_rate_id = {$taxRateId}")->row;
 
             // Only finds rates that are in Percentage
-            if (!$taxRate || $taxRate->type != 'P')
+            if (!$taxRate || $taxRate['type'] != 'P')
                 continue;
 
             $rate = $taxRate->rate;

@@ -9,7 +9,7 @@ Instruções de como instalar e integrar o Facturalusa com a sua Loja Online Ope
 7. Instalar o módulo "Facturalusa"
 8. Editar / configurar o módulo "Facturalusa"
 
-Após concluir a configuração, quando uma encomenda for sincronizada do Opencart para o Facturalusa, a indicação do documento criado, vai aparecer em dois sítios:
+Após concluir a configuração, quando uma encomenda for sincronizada do Opencart para o Facturalusa, a indicação do documento criado irá aparecer em dois sítios:
 	1. Na listagem das encomendas, no menu Sales > Orders
 	2. Na visualização de uma encomenda, no menu Sales > Orders > View
 	

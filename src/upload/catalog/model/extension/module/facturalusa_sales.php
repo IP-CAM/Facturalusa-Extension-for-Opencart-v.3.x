@@ -1,6 +1,6 @@
 <?php
 
-class ModelExtensionModuleFacturalusaDocuments extends Model 
+class ModelExtensionModuleFacturalusaSales extends Model 
 {
     /**
      * Returns the table name with the prefix from database
@@ -9,7 +9,7 @@ class ModelExtensionModuleFacturalusaDocuments extends Model
      */
     private function table()
     {
-        return DB_PREFIX . 'facturalusa_documents';
+        return DB_PREFIX . 'facturalusa_sales';
     }
     
     /**

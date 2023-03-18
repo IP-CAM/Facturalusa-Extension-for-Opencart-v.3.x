@@ -1,24 +1,10 @@
 <?php 
 
 /**
- * Facturalusa Customers Database Table Class
+ * Facturalusa Opencart Customers Database Table Class
  */
-class FacturalusaCustomersDB
+class FacturalusaOpencartCustomersDB
 {   
-    /**
-     * Holds the Opencart Registry class
-     * 
-     * @param   Object
-     */
-    private $registry;
-
-    /**
-     * Holds the directory path
-     * 
-     * @param   String
-     */
-    private $path;
-
     /**
      * Holds the model facturalusa items
      * 
@@ -33,13 +19,11 @@ class FacturalusaCustomersDB
      */
     public function __construct($registry = [])
     {
-        $this->registry = $registry;        
-        $this->path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
-        
-        require_once($this->path . 'model/extension/module/facturalusa_customers.php');
+        $path = defined('DIR_CATALOG') ? DIR_CATALOG : DIR_APPLICATION; // Because it's being called in admin & catalog
 
-        // Initializes the models old way
-        $this->modelFacturalusaCustomers = new ModelExtensionModuleFacturalusaCustomers($this->registry);
+        require_once($path . 'model/extension/module/facturalusa_customers.php');
+        
+        $this->modelFacturalusaCustomers = new ModelExtensionModuleFacturalusaCustomers($registry);
     }
 
     /**

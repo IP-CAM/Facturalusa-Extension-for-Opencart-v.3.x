@@ -43,9 +43,6 @@
                         <li><a href="#tab-customers" data-toggle="tab">Clientes</a></li>
                         <li><a href="#tab-items" data-toggle="tab">Artigos</a></li>
                         <li><a href="#tab-others" data-toggle="tab">Outros</a></li>
-                        <li style="{{ module_facturalusa_document_send_email_through == 'Facturalusa' ? 'display: none' : '' }}">
-                            <a href="#tab-email-template" data-toggle="tab">Envio de email template</a>
-                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-general">
@@ -180,16 +177,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Envia email via</label>
-                                <div class="col-sm-10">
-                                    <select name="module_facturalusa_document_send_email_through" class="form-control">
-                                        <option value="Facturalusa" {{ module_facturalusa_document_send_email_through == 'Facturalusa' ? 'selected' : '' }}>Facturalusa</option>
-                                        <option value="OpenCart" {{ module_facturalusa_document_send_email_through == 'OpenCart' ? 'selected' : '' }}>OpenCart</option>
-                                    </select>
-                                    <p class="text-muted" style="margin-top: 5px; margin-bottom: 0px">Para enviar o email através da sua loja é necessário que tenha devidamente configurado o email. <a href="index.php?route=setting/setting&user_token={{ user_token }}" target="_blank">Clique aqui</a> para verificar a configuração.</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Enviar cópia do email para</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="module_facturalusa_document_email_copyto" class="form-control" value="{{ module_facturalusa_document_email_copyto }}"/>
@@ -298,9 +285,6 @@
                                         <option value="2" {{ module_facturalusa_item_vat_exemption == 2 ? 'selected' : '' }}>
                                             M02 - Artigo 6.º do Decreto-Lei n.º 198/90, de 19 de Junho
                                         </option>
-                                        <option value="3" {{ module_facturalusa_item_vat_exemption == 3 ? 'selected' : '' }}>
-                                            M03 - Exigibilidade de caixa
-                                        </option>
                                         <option value="4" {{ module_facturalusa_item_vat_exemption == 4 ? 'selected' : '' }}>
                                             M04 - Isento Artigo 13.º do CIVA (ou similar)
                                         </option>
@@ -312,9 +296,6 @@
                                         </option>
                                         <option value="7" {{ module_facturalusa_item_vat_exemption == 7 ? 'selected' : '' }}>
                                             M07 - Isento Artigo 9.º do CIVA (ou similar)
-                                        </option>
-                                        <option value="8" {{ module_facturalusa_item_vat_exemption == 8 ? 'selected' : '' }}>
-                                            M08 - IVA - autoliquidação
                                         </option>
                                         <option value="9" {{ module_facturalusa_item_vat_exemption == 9 ? 'selected' : '' }}>
                                             M09 - IVA - não confere direito a dedução
@@ -340,15 +321,46 @@
                                         <option value="16" {{ module_facturalusa_item_vat_exemption == 16 ? 'selected' : '' }}>
                                             M16 - Isento Artigo 14.º do RITI (ou similar)
                                         </option>
-                                        <option value="17" {{ module_facturalusa_item_vat_exemption == 17 ? 'selected' : '' }}>
-                                            M99 - Não sujeito; não tributado (ou similar)
-                                        </option>
                                         <option value="18" {{ module_facturalusa_item_vat_exemption == 18 ? 'selected' : '' }}>
                                             M18 - Sem isenção
+                                        </option>
+                                        <option value="20" {{ module_facturalusa_item_vat_exemption == 20 ? 'selected' : '' }}>
+                                            M19 - Outras isenções
                                         </option>
                                         <option value="19" {{ module_facturalusa_item_vat_exemption == 19 ? 'selected' : '' }}>
                                             M20 - IVA - Regime forfetário
                                         </option>
+                                        <option value="21" {{ module_facturalusa_item_vat_exemption == 21 ? 'selected' : '' }}>
+                                            M21 - IVA - não confere direito à dedução
+                                        </option>
+                                        <option value="22" {{ module_facturalusa_item_vat_exemption == 22 ? 'selected' : '' }}>
+                                            M25 - Mercadorias à consignação
+                                        </option>
+                                        <option value="23" {{ module_facturalusa_item_vat_exemption == 23 ? 'selected' : '' }}>
+                                            M30 - IVA - autoliquidação - Artigo 2.º n.º 1 alínea i) do CIVA
+                                        </option>
+                                        <option value="24" {{ module_facturalusa_item_vat_exemption == 24 ? 'selected' : '' }}>
+                                            M31 - IVA - autoliquidação - Artigo 2.º n.º 1 alínea j) do CIVA
+                                        </option>
+                                        <option value="25" {{ module_facturalusa_item_vat_exemption == 25 ? 'selected' : '' }}>
+                                            M32 - IVA - autoliquidação - Artigo 2.º n.º 1 alínea l) do CIVA
+                                        </option>
+                                        <option value="26" {{ module_facturalusa_item_vat_exemption == 26 ? 'selected' : '' }}>
+                                            M40 - IVA - autoliquidação - Artigo 6.º n.º 6 alínea a) do CIVA, a contrário
+                                        </option>
+                                        <option value="27" {{ module_facturalusa_item_vat_exemption == 27 ? 'selected' : '' }}>
+                                            M41 - IVA - autoliquidação - Artigo 8.º n.º 3 do RITI
+                                        </option>
+                                        <option value="28" {{ module_facturalusa_item_vat_exemption == 28 ? 'selected' : '' }}>
+                                            M42 - IVA - autoliquidação - Decreto-Lei n.º 21/2007, de 29 de janeiro
+                                        </option>
+                                        <option value="29" {{ module_facturalusa_item_vat_exemption == 29 ? 'selected' : '' }}>
+                                            M43 - IVA - autoliquidação - Decreto-Lei n.º 362/99, de 16 de setembro
+                                        </option>
+                                        <option value="17" {{ module_facturalusa_item_vat_exemption == 17 ? 'selected' : '' }}>
+                                            M99 - Não sujeito; não tributado (ou similar)
+                                        </option>                                       
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -362,7 +374,7 @@
                                         <option value="IVA incluído" {{ module_facturalusa_other_vat_type == 'IVA incluído' ? 'selected' : '' }}>IVA incluído</option>
                                         <option value="Não fazer nada" {{ module_facturalusa_other_vat_type == 'Não fazer nada' ? 'selected' : '' }}>Não fazer nada</option>                                    
                                     </select>
-                                    <p class="text-muted" style="margin-top: 5px; margin-bottom: 0px">Por exemplo, se os preços apresentados na sua loja já possuírem IVA, deve seleccionar a opção 'IVA incluído'.</p>
+                                    <p class="text-muted" style="margin-top: 5px; margin-bottom: 0px">Por norma, apesar de em algumas lojas o preço do produto ser apresentado já com IVA, deve ser seleccionado «Debitar IVA».</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -401,79 +413,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab-email-template">
-                            <div class="row">
-                                <div class="container-fluid">
-                                    <div class="col-sm-12" style="display: flex; background-color: #f6f6f6; padding: 10px;">
-                                        <div style="margin-right: 5px; margin-top: 5px">
-                                            <i class="fa fa-exclamation-triangle" style="font-size: 20px; color: #f79810;"></i>
-                                        </div>
-                                        <div style="line-height: 1.7; font-size: 14px;">
-                                            Defina o template de email a ser enviado quando uma nova encomenda é criada e o documento no Facturalusa gerado. Estas configurações são obrigatórias quando 
-                                            a opção seleccionada em "Envia email via", no separador "Documentos", é "OpenCart". Deve definir os textos em Português e Inglês.
-                                            <br/><br/>
-                                            Na construção do email, pode dar uso às seguintes <i>tags</i> para uma melhor apresentação do email, tanto no assunto como no corpo de email:
-                                            <ul class="list-unstyled pl-0" style="font-size: 13px; margin-top: 5px;">
-                                                <li>@data_emissao - Data de emissão do documento</li>
-                                                <li>@cliente - Nome do cliente</li>
-                                                <li>@contribuinte - Contribuinte identificado no documento</li>
-                                                <li>@documento - Designação do documento (ex.: Factura A/291)</li>
-                                                <li>@total_geral - Total geral do documento (já possui o símbolo da moeda)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 20px">
-                                <div class="container-fluid">
-                                    <div class="col-sm-6">
-                                        <div style="font-weight: bold; font-size: 16px">Português</div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Assunto</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="module_facturalusa_send_email_pt_subject" class="form-control" value="{{ module_facturalusa_send_email_pt_subject }}" placeholder="Ex.: @documento - @total_geral"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Corpo de email</label>
-                                            <div class="col-sm-8">
-                                                <textarea type="text" name="module_facturalusa_send_email_pt_message" class="form-control" rows="10">{{ module_facturalusa_send_email_pt_message }}</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div style="font-weight: bold; font-size: 16px">Inglês</div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Assunto</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="module_facturalusa_send_email_en_subject" class="form-control" value="{{ module_facturalusa_send_email_en_subject }}" placeholder="Ex.: @documento - @total_geral"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Corpo de email</label>
-                                            <div class="col-sm-8">
-                                                <textarea type="text" name="module_facturalusa_send_email_en_message" class="form-control" rows="10">{{ module_facturalusa_send_email_en_message }}</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).on('change', '[name="module_facturalusa_document_send_email_through"]', function()
-    {
-        var value = $(this).val();
-
-        if (value == 'Facturalusa')
-            $('[href="#tab-email-template"]').parent().css('display', 'none');
-        else
-            $('[href="#tab-email-template"]').parent().css('display', 'inherit');
-    });
-</script>
 {{ footer }}

@@ -111,13 +111,6 @@ class ControllerExtensionModuleFacturalusa extends Controller
         else
             $data['module_facturalusa_document_force_sign'] = $this->config->get('module_facturalusa_document_force_sign');
 
-        if (isset($this->request->post['module_facturalusa_document_send_email_through']))
-            $data['module_facturalusa_document_send_email_through'] = $this->request->post['module_facturalusa_document_send_email_through'];
-        elseif ($this->config->get('module_facturalusa_document_send_email_through'))
-            $data['module_facturalusa_document_send_email_through'] = $this->config->get('module_facturalusa_document_send_email_through');
-        else
-            $data['module_facturalusa_document_send_email_through'] = '';
-
         if (isset($this->request->post['module_facturalusa_document_email_copyto']))
             $data['module_facturalusa_document_email_copyto'] = $this->request->post['module_facturalusa_document_email_copyto'];
         elseif ($this->config->get('module_facturalusa_document_email_copyto'))
@@ -199,7 +192,7 @@ class ControllerExtensionModuleFacturalusa extends Controller
         elseif ($this->config->get('module_facturalusa_other_vat_type'))
             $data['module_facturalusa_other_vat_type'] = $this->config->get('module_facturalusa_other_vat_type');
         else
-            $data['module_facturalusa_other_vat_type'] = 'IVA incluído';
+            $data['module_facturalusa_other_vat_type'] = 'Debitar IVA';
 
         if (isset($this->request->post['module_facturalusa_other_location_origin']))
             $data['module_facturalusa_other_location_origin'] = $this->request->post['module_facturalusa_other_location_origin'];
@@ -239,33 +232,6 @@ class ControllerExtensionModuleFacturalusa extends Controller
         else
             $data['module_facturalusa_other_decimal_places_quantities'] = 2;
 
-        if (isset($this->request->post['module_facturalusa_send_email_pt_subject']))
-            $data['module_facturalusa_send_email_pt_subject'] = $this->request->post['module_facturalusa_send_email_pt_subject'];
-        elseif ($this->config->get('module_facturalusa_send_email_pt_subject'))
-            $data['module_facturalusa_send_email_pt_subject'] = $this->config->get('module_facturalusa_send_email_pt_subject');
-        else
-            $data['module_facturalusa_send_email_pt_subject'] = '';
-
-        if (isset($this->request->post['module_facturalusa_send_email_pt_message']))
-            $data['module_facturalusa_send_email_pt_message'] = $this->request->post['module_facturalusa_send_email_pt_message'];
-        elseif ($this->config->get('module_facturalusa_send_email_pt_message'))
-            $data['module_facturalusa_send_email_pt_message'] = $this->config->get('module_facturalusa_send_email_pt_message');
-        else
-            $data['module_facturalusa_send_email_pt_message'] = '';
-
-        if (isset($this->request->post['module_facturalusa_send_email_en_subject']))
-            $data['module_facturalusa_send_email_en_subject'] = $this->request->post['module_facturalusa_send_email_en_subject'];
-        elseif ($this->config->get('module_facturalusa_send_email_en_subject'))
-            $data['module_facturalusa_send_email_en_subject'] = $this->config->get('module_facturalusa_send_email_en_subject');
-        else
-            $data['module_facturalusa_send_email_en_subject'] = '';
-
-        if (isset($this->request->post['module_facturalusa_send_email_en_message']))
-            $data['module_facturalusa_send_email_en_message'] = $this->request->post['module_facturalusa_send_email_en_message'];
-        elseif ($this->config->get('module_facturalusa_send_email_en_message'))
-            $data['module_facturalusa_send_email_en_message'] = $this->config->get('module_facturalusa_send_email_en_message');
-        else
-            $data['module_facturalusa_send_email_en_message'] = '';
         
         $this->load->model('localisation/order_status');
         $this->load->model('customer/custom_field');
@@ -326,11 +292,11 @@ class ControllerExtensionModuleFacturalusa extends Controller
      */
     public function create()
     {
-        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaDocument.php');
+        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaOpencartSale.php');
 
         $orderId = $this->request->get['order_id'];
-        $facturalusaDocument = new FacturalusaDocument($this->registry);
-        $response = $facturalusaDocument->create($orderId);
+        $facturalusaSale = new FacturalusaOpencartSale($this->registry);
+        $response = $facturalusaSale->create($orderId);
 
         $this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($response));
@@ -345,11 +311,11 @@ class ControllerExtensionModuleFacturalusa extends Controller
      */
     public function cancel()
     {
-        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaDocument.php');
+        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaOpencartSale.php');
 
         $orderId = $this->request->get['order_id'];
-        $facturalusaDocument = new FacturalusaDocument($this->registry);
-        $response = $facturalusaDocument->cancel($orderId);
+        $facturalusaSale = new FacturalusaOpencartSale($this->registry);
+        $response = $facturalusaSale->cancel($orderId);
 
         $this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($response));
@@ -364,11 +330,30 @@ class ControllerExtensionModuleFacturalusa extends Controller
      */
     public function download()
     {
-        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaDocument.php');
+        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaOpencartSale.php');
 
         $orderId = $this->request->get['order_id'];
-        $facturalusaDocument = new FacturalusaDocument($this->registry);
-        $response = $facturalusaDocument->download($orderId);
+        $facturalusaSale = new FacturalusaOpencartSale($this->registry);
+        $response = $facturalusaSale->download($orderId);
+
+        $this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($response));
+    }
+
+    /**
+     * Sends an existing document through email
+     * 
+     * @param   Request
+     * 
+     * @return  Json
+     */
+    public function sendEmail()
+    {
+        require_once(DIR_SYSTEM . 'library/facturalusa/FacturalusaOpencartSale.php');
+
+        $orderId = $this->request->get['order_id'];
+        $facturalusaSale = new FacturalusaOpencartSale($this->registry);
+        $response = $facturalusaSale->sendEmail($orderId);
 
         $this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($response));
@@ -396,7 +381,6 @@ class ControllerExtensionModuleFacturalusa extends Controller
             'module_facturalusa_document_force_send_email' => 1,
             'module_facturalusa_document_force_send_sms' => 0,
             'module_facturalusa_document_force_sign' => 0,
-            'module_facturalusa_document_send_email_through' => 'Facturalusa',
             'module_facturalusa_document_email_copyto' => '',
             'module_facturalusa_document_language' => 'Auto',
             'module_facturalusa_customer_update' => 1,
@@ -408,16 +392,12 @@ class ControllerExtensionModuleFacturalusa extends Controller
             'module_facturalusa_item_unit' => '',
             'module_facturalusa_item_vat' => '',
             'module_facturalusa_item_vat_exemption' => 18,
-            'module_facturalusa_other_vat_type' => 'IVA incluído',
+            'module_facturalusa_other_vat_type' => 'Debitar IVA',
             'module_facturalusa_other_location_origin' => '',
             'module_facturalusa_other_shipping_name' => '',
             'module_facturalusa_other_shipping_vat' => '',
             'module_facturalusa_other_decimal_places_prices' => 2,
             'module_facturalusa_other_decimal_places_quantities' => 2,
-            'module_facturalusa_send_email_pt_subject' => '',
-            'module_facturalusa_send_email_pt_message' => '',
-            'module_facturalusa_send_email_en_subject' => '',
-            'module_facturalusa_send_email_en_message' => '',
         ]);
 
         $this->model_extension_module_facturalusa->install();
@@ -436,9 +416,9 @@ class ControllerExtensionModuleFacturalusa extends Controller
         $this->load->model('extension/module/facturalusa');
 
         $this->model_setting_setting->deleteSetting('module_facturalusa');
-        $this->model_extension_module_facturalusa->uninstall();
-
         $this->model_setting_event->deleteEventByCode('facturalusa_order_edit');
         $this->model_setting_event->deleteEventByCode('facturalusa_order_add');
+        
+        $this->model_extension_module_facturalusa->uninstall();
     }
 }

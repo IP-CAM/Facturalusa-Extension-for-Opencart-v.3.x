@@ -14,15 +14,15 @@ class ControllerExtensionModuleFacturalusa extends Controller
         if (!isset($args[0]))
             return;
 
-        require_once('system/library/facturalusa/FacturalusaDocument.php');
+        require_once('system/library/facturalusa/FacturalusaOpencartSale.php');
 
         // No response to be output
         $orderId = $args[0];
-        $facturalusaDocument = new FacturalusaDocument($this->registry);
+        $facturalusaSale = new FacturalusaOpencartSale($this->registry);
 
-        if ($facturalusaDocument->shouldCreate($orderId))
-            $facturalusaDocument->create($orderId);
-        elseif ($facturalusaDocument->shouldCancel($orderId))
-            $facturalusaDocument->cancel($orderId);
+        if ($facturalusaSale->shouldCreate($orderId))
+            $facturalusaSale->create($orderId);
+        elseif ($facturalusaSale->shouldCancel($orderId))
+            $facturalusaSale->cancel($orderId);
     }
 }
